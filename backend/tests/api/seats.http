@@ -1,0 +1,39 @@
+### GET request for getting all seats
+GET http://127.0.0.1:5000/seats
+Accept: application/json
+
+### GET request for getting all seatc by aircraft
+GET http://127.0.0.1:5000/seats/BSD
+Accept: application/json
+
+### GET request for getting one seat
+GET http://127.0.0.1:5000/seats/BSD-D14
+Accept: application/json
+
+### POST request for adding new seat
+POST http://127.0.0.1:5000/seats
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "aircraft_code": "BSD",
+  "seat_no": "D2",
+  "fare_conditions": 1
+}
+
+
+### PUT request for updating seat
+PUT http://127.0.0.1:5000/seats/BSD-D21
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "seat_no": "D22"
+}
+
+### DELETE request for deleting seat
+DELETE http://127.0.0.1:5000/seats/BSD-D22
+X-Token: 123456789
+Accept: application/json

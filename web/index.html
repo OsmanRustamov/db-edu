@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: #FFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>API</h1>
+    <pre id="json">
+    </pre>
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+            const container = document.querySelector('#json');
+            fetch('http://localhost:8080/regions')
+                .then(request=>{
+                    return request.json()
+                })
+                .then(data=>{
+                    container.innerHTML = JSON.stringify(data, null, 2);
+                });
+        });
+    </script>
+</body>
+</html>

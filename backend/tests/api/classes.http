@@ -1,0 +1,46 @@
+### GET request for getting all classes
+GET http://127.0.0.1:5000/classes
+Accept: application/json
+
+### GET request for getting one class
+GET http://127.0.0.1:5000/classes/1
+Accept: application/json
+
+### GET request for getting one unexists class
+GET http://127.0.0.1:5000/classes/2
+Accept: application/json
+
+### POST request for adding new class
+POST http://127.0.0.1:5000/classes
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "name": "Economy"
+}
+
+### PUT request for updating class
+PUT http://127.0.0.1:5000/classes/1
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "name": "Business"
+}
+
+### PUT request for updating unexists class
+PUT http://127.0.0.1:5000/classes/10
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "name": "Economy"
+}
+
+### DELETE request for deleting classes
+DELETE http://127.0.0.1:5000/classes/2
+X-Token: 123456789
+Accept: application/json

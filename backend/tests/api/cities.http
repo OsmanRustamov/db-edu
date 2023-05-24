@@ -1,0 +1,39 @@
+### GET request for getting all cities
+GET http://127.0.0.1:5000/cities
+Accept: application/json
+
+### GET request for getting all cities by region
+GET http://127.0.0.1:5000/cities/?region_id=1
+Accept: application/json
+
+### GET request for getting one city
+GET http://127.0.0.1:5000/cities/1
+Accept: application/json
+
+### POST request for adding new city
+POST http://127.0.0.1:5000/cities
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "name": "Нефтекамск",
+  "region_id": 1
+}
+
+
+### PUT request for updating city
+PUT http://127.0.0.1:5000/cities/1
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "name": "Ижевск",
+  "region_id": 2
+}
+
+### DELETE request for deleting city
+DELETE http://127.0.0.1:5000/cities/1
+X-Token: 123456789
+Accept: application/json

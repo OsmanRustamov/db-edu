@@ -1,0 +1,45 @@
+### GET request for getting all regions
+GET http://127.0.0.1:5000/regions
+Accept: application/json
+
+### GET request for getting one region
+GET http://127.0.0.1:5000/regions/2
+Accept: application/json
+
+### GET request for getting one unexists region
+GET http://127.0.0.1:5000/regions/2
+Accept: application/json
+
+### POST request for adding new region
+POST http://localhost:8080/regions
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "name": "1231223"
+}
+
+### PUT request for updating region
+PUT http://127.0.0.1:5000/regions/2
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "name": "test"
+}
+
+### PUT request for updating unexists region
+PUT http://127.0.0.1:5000/regions/10
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "TestFromClient3"
+}
+
+### DELETE request for deleting region
+DELETE http://127.0.0.1:5000/regions/1
+X-Token: 123456789
+Accept: application/json

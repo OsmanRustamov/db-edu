@@ -1,0 +1,37 @@
+### GET request for getting all aircrafts
+GET http://127.0.0.1:5000/aircrafts
+Accept: application/json
+
+### GET request for getting one aircraft
+GET http://127.0.0.1:5000/aircrafts/BSD
+Accept: application/json
+
+### POST request for adding new aircraft
+POST http://127.0.0.1:5000/aircrafts
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "aircraft_code": "UDT",
+  "model": "Boing",
+  "distance": 12
+}
+
+### PUT request for updating aircraft
+PUT http://127.0.0.1:5000/aircrafts/BSD
+Accept: application/json
+Content-Type: application/json
+X-Token: 123456789
+
+{
+  "aircraft_code": "BSD",
+  "model": "Boing747",
+  "distance": 120
+}
+
+
+### DELETE request for deleting aircraft
+DELETE http://127.0.0.1:5000/aircrafts/BSD
+X-Token: 123456789
+Accept: application/json

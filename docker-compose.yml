@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  gateway:
+    container_name: gateway
+    build:
+      context: docker/gateway
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - backend
+      - frontend
+  backend:
+    container_name: api
+    build:
+      context: docker/backend
+      dockerfile: nginx/Dockerfile
+    depends_on:
+      - backend-python
+  backend-python:
+    build:
+      context: ./
+      dockerfile: docker/backend/python/Dockerfile
+    volumes:
+      - ./backend:/backend
+    environment:
+      - DOCKER_BUILDKIT=0
+  frontend:
+    build:
+      context: docker/frontend
+      dockerfile: nginx/Dockerfile
+    volumes:
+      - ./web:/app

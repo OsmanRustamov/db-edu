@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, html {
+            background-color: #6d6464;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+        }
+        .section {
+            display: flex;
+            margin: 0 auto;
+            flex-direction: column;
+            background-color: #9c9292;
+        }
+        .input {
+            margin: 10px;
+            background-color: #bdb2b2;
+        }
+        .empty_input {
+            margin: 10px;
+            background-color: #bdb2b2;
+            border: #810303 solid 1px;
+        }
+        .btn_submit {
+            border: none;
+            padding: 10px;
+            width: fit-content;
+            margin: 0 auto;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+        <section class="section">
+        <input type="text" class="input name" id="name" placeholder="Name" value="name">
+        <input type="text" class="input group" placeholder="Group" value="group">
+        <div class="sex_choise">
+            <label><input type="radio" id="male" name="sex" value="male" class="input sex">Male</label>
+            <label><input type="radio" id="female" name="sex" value="female" class="input sex">Female</label>
+            <label><input type="radio" id="other" name="sex" value="other" class="input sex">Another</label>
+        </div>
+        <select name="" id="day" class="input birthday"></select>
+        <select name="" id="month" class="input birthmonth"></select>
+        <select name="" id="year" class="input birthyear"></select>
+        <input type="checkbox" class="isDriver">
+        <button class="btn_submit" id="submit">Submit</button>
+    </section>
+</body>
+</html>

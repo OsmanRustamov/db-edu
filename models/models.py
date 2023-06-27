@@ -19,7 +19,7 @@ tariffs = Table(
     Column("id", Integer, primary_key=True),
     Column("price", Float, nullable=False, unique=True),
     Column("description", String, nullable=False, unique=True),
-    Column("server_id", String, ForeignKey("servers.id"))
+    Column("server_id", Integer, ForeignKey("servers.id"))
 )
 
 hardwares = Table(
@@ -36,7 +36,7 @@ servers = Table(
     "servers",
     metadata,
     Column("id", Integer, primary_key=True),
-    Column("hardware_id", Float, ForeignKey("hardwares.id")),
+    Column("hardware_id", Integer, ForeignKey("hardwares.id")),
     Column("ip_address", String, nullable=False, unique=True),
     Column("operating_system", String, nullable=False, unique=False)
 )
@@ -45,8 +45,8 @@ payments = Table(
     "payments",
     metadata,
     Column("id", Integer, primary_key=True),
-    Column("client_id", Float, ForeignKey("clients.id")),
-    Column("tariff_id", String, ForeignKey("tariffs.id")),
+    Column("client_id", Integer, ForeignKey("clients.id")),
+    Column("tariff_id", Integer, ForeignKey("tariffs.id")),
     Column("price", String, nullable=False, unique=False),
     Column("created_at", TIMESTAMP, default=datetime.utcnow)
 )

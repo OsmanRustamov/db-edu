@@ -1,8 +1,8 @@
 """Hosting db creation
 
-Revision ID: ef2fbf4b0322
+Revision ID: 4ef1720ed65d
 Revises: 
-Create Date: 2023-06-27 15:11:19.309264
+Create Date: 2023-06-27 15:31:45.136236
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ef2fbf4b0322'
+revision = '4ef1720ed65d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,7 +29,7 @@ def upgrade() -> None:
     )
     op.create_table('servers',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('hardware_id', sa.Float(), nullable=True),
+    sa.Column('hardware_id', sa.Integer(), nullable=True),
     sa.Column('ip_address', sa.String(), nullable=False),
     sa.Column('operating_system', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['hardware_id'], ['hardwares.id'], ),
@@ -40,7 +40,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('description', sa.String(), nullable=False),
-    sa.Column('server_id', sa.String(), nullable=True),
+    sa.Column('server_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['server_id'], ['servers.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
@@ -59,8 +59,8 @@ def upgrade() -> None:
     )
     op.create_table('payments',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('client_id', sa.Float(), nullable=True),
-    sa.Column('tariff_id', sa.String(), nullable=True),
+    sa.Column('client_id', sa.Integer(), nullable=True),
+    sa.Column('tariff_id', sa.Integer(), nullable=True),
     sa.Column('price', sa.String(), nullable=False),
     sa.Column('created_at', sa.TIMESTAMP(), nullable=True),
     sa.ForeignKeyConstraint(['client_id'], ['clients.id'], ),

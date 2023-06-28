@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+<body>
+{% block content %}
+    <section class="section">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>email</th>
+                <th>tariff</th>
+                <th>created_at</th>
+            </tr>
+        </thead>
+        {% for us in user %}
+        <tbody>
+            <tr>
+                <th>{{ us.id }}</th>
+                <td>{{ us.name }}</td>
+                <td>{{ us.email }}</td>
+                <td>{{ us.tariff_id }}</td>
+                <td>{{ us.created_at }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        <div class="add_user">
+        <a href="/user/add_user">Add user</a>
+        </div>
+        <div class="find_user">
+        <a href="/user/find_user">Find user</a>
+        </div>
+        <div class="delete_user">
+        <a href="/user/delete_user">Delete user</a>
+        </div>
+    </section>
+{% endblock %}

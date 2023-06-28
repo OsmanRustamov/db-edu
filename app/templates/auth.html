@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body, html {
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        margin: 0 auto;
+        padding: 0;
+        display: flex;
+    }
+    .section{
+        opacity: 0.8;
+        display: flex;
+        border-radius: 10px;
+        padding: 5em;
+        margin: 0 auto;
+        flex-direction: column;
+        background-color: #7b7b7b;
+    }
+    .input {
+        margin: 10px;
+        background-color: #bdb2b2;
+        color: #000;
+    }
+    .empty_input {
+        margin: 10px;
+        background-color: #bdb2b2;
+        border: #810303 solid 1px;
+    }
+    .btn_submit {
+        border: none;
+        padding: 10px;
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 15px;
+    }
+    .menu {
+        display: flex;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    th {
+        background-color: #686565;
+    }
+    td {
+        background-color: #898989;
+    }
+    .btn_confirm {
+        margin: 10px 0px;
+        padding: 5px;
+        border: 0px;
+    }
+    .confirm {
+        padding: 10px;
+    }
+    .start {
+        font-size: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: #000;
+      margin: 0 auto;
+      font-size: 12px;
+    }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="btn">
+            <button class="btn_submit">Auth</button>
+            <button class="btn_submit">Regis</button>
+        </div>
+    </nav>
+    <section class="section">
+        <input type="text" class="input name" id="name" placeholder="Name" value="name">
+        <input type="password" class="input group" placeholder="Password" value="group">
+        <button class="btn_submit" id="submit">Submit</button>
+    </section>
+</body>
+</html>

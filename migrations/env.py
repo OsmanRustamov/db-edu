@@ -2,9 +2,9 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-from models.models import metadata
+from app.models.models import metadata
 from alembic import context
-from config import DB_HOST, DB_USER, DB_PORT, DB_PASS, DB_NAME
+from app.config import DB_HOST, DB_USER, DB_PORT, DB_PASS, DB_NAME
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

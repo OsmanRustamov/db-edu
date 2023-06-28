@@ -6,7 +6,7 @@ from auth.auth import auth_backend
 from auth.database import User
 from auth.manager import get_user_manager
 from auth.schemas import UserRead, UserCreate
-
+from routes import routes
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
@@ -41,7 +41,7 @@ current_user = fastapi_users.current_user()
 
 @app.get("/protected-route")
 def protected_route(user: User = Depends(current_user)):
-    return f"Hello, {user.username}"
+    return f"Hello, {user.name}"
 
 
 @app.get("/unprotected-route")
@@ -52,6 +52,9 @@ def unprotected_route():
 @app.get("/index")
 async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
+for route in routes:
+    app.include_router(route)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=5433, reload=True, workers=3)

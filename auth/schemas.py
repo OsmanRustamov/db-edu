@@ -19,6 +19,7 @@ class UserCreate(schemas.BaseUserCreate):
     name: str
     email: str
     password: str
+    tariff_id: int = 0
     is_active: Optional[bool] = True
     is_superuser: Optional[bool] = False
     is_verified: Optional[bool] = False

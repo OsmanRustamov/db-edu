@@ -9,7 +9,7 @@ user = Table(
     Column("id", Integer, primary_key=True),
     Column("name", String, nullable=False, unique=True),
     Column("email", String, nullable=False, unique=True),
-    Column("tariff_id", Integer, ForeignKey("tariff.id")),
+    Column("tariff_id", Integer, ForeignKey("tariff.id"), nullable=True),
     Column("created_at", TIMESTAMP, default=datetime.utcnow),
     Column("hashed_password", String(length=1024), nullable=False),
     Column("is_active", Boolean, default=True, nullable=False),

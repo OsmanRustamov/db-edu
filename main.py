@@ -1,15 +1,21 @@
+from select import select
+
 from fastapi import FastAPI, Request, Depends
 import uvicorn
 from fastapi.templating import Jinja2Templates
 from fastapi_users import fastapi_users, FastAPIUsers
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from auth.auth import auth_backend
-from auth.database import User
+from auth.database import User, get_async_session
 from auth.manager import get_user_manager
 from auth.schemas import UserRead, UserCreate
+from models.models import hardware
 from routes import routes
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
+
 
 fastapi_users = FastAPIUsers[User, int](
     get_user_manager,

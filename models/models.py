@@ -1,4 +1,4 @@
-from sqlalchemy import Table, Column, Float, Integer, String, MetaData, ForeignKey, TIMESTAMP, Boolean
+from sqlalchemy import Table, Column, String, Integer, String, MetaData, ForeignKey, TIMESTAMP, Boolean
 from datetime import datetime
 
 metadata = MetaData()
@@ -21,7 +21,7 @@ tariff = Table(
     "tariff",
     metadata,
     Column("id", Integer, primary_key=True),
-    Column("price", Float, nullable=False, unique=True),
+    Column("price", String, nullable=False, unique=True),
     Column("description", String, nullable=False, unique=True),
     Column("server_id", Integer, ForeignKey("server.id"))
 )
@@ -30,9 +30,9 @@ hardware = Table(
     "hardware",
     metadata,
     Column("id", Integer, primary_key=True),
-    Column("cpu", Float, nullable=False, unique=True),
-    Column("capacity_of_ram", Float, nullable=False, unique=False),
-    Column("capacity_of_disk", Float, nullable=False, unique=False),
+    Column("cpu", String, nullable=False, unique=True),
+    Column("capacity_of_ram", String, nullable=False, unique=False),
+    Column("capacity_of_disk", String, nullable=False, unique=False),
     Column("status", String, nullable=False, unique=False)
 )
 

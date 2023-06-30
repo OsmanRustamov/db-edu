@@ -1,6 +1,6 @@
 from app.models.models import user
 from fastapi import APIRouter, Depends, Response
-from sqlalchemy import select, insert
+from sqlalchemy import select, insert, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth.database import get_async_session
@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 @router.get("/user")
-async def get_all_users(user_id: int, session: AsyncSession = Depends(get_async_session)):
+async def get_all_users(session: AsyncSession = Depends(get_async_session)):
     query = select(user)
     result = await session.execute(query)
     dict_user = dict()
@@ -25,12 +25,49 @@ async def get_all_users(user_id: int, session: AsyncSession = Depends(get_async_
         dict_user.update({"tariff_id": el[3]})
         dict_user.update({"created_at": el[4]})
         res.append(el)
-    return {"dict": dict_user,
-            "res": res}
+    return {"res": res}
 
-@router.post("/user")
+@router.post("/user/new_user")
 async def add_specific_users(new_user: User_create, session: AsyncSession = Depends(get_async_session)):
     stmt = insert(user).values(**new_user.dict())
     await session.execute(stmt)
-    await  session.commit()
-    return {"status": "user added"}
+    await session.commit()
+    print(new_user.dict().get("id"))
+    query = select(user).where(user.c.id == new_user.dict().get("id"))
+    result = await session.execute(query)
+    res = []
+    for el in result.all():
+        res.append(el)
+    return {"status": "good",
+            "added_user": res
+            }
+
+@router.post("/user/user_id")
+async def find_user(user_id: int, session: AsyncSession = Depends(get_async_session)):
+    query = select(user).where(user.c.id == user_id)
+    result = await session.execute(query)
+    dict_user = dict()
+    res = []
+    for el in result.all():
+        dict_user.update({"id": el[0]})
+        dict_user.update({"name": el[1]})
+        dict_user.update({"email": el[2]})
+        dict_user.update({"tariff_id": el[3]})
+        dict_user.update({"created_at": el[4]})
+        res.append(el)
+    return {
+            "dict_user": dict_user,
+            "finded_user": res
+    }
+
+@router.post("/user/user_id")
+async def delete_user(user_id: int, session: AsyncSession = Depends(get_async_session)):
+    stmt = delete(user).where(user.c.id == user_id)
+    await session.execute(stmt)
+    await session.commit()
+    res = []
+    for el in stmt.all():
+        res.append(el)
+    return {"status": "user",
+            "res": res
+            }

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block head %}
+<script>
+    const hardware_id = document.getElementById("id").value()
+    const hardware_cpu = document.getElementById("cpu").value()
+    const hardware_capacity_of_ram = document.getElementById("capacity_of_ram").value()
+    const hardware_capacity_of_disk = document.getElementById("capacity_of_disk").value()
+    const hardware_status = document.getElementById("status").value()
+
+    const response = await fetch("/hardware/add_hardware", {
+        method: "POST",
+        headers: {"Accept": "application/json", "Content-Type": "application/json"},
+        body: JSON.stringify({
+            id: hardware_id,
+            cpu: hardware_cpu,
+            capacity_of_ram: hardware_capacity_of_ram,
+            capacity_of_disk: hardware_capacity_of_disk,
+            status: hardware_status
+        })
+    });
+    if (response.ok) {
+        const data = await response.json();
+        document.getElementById("message").textContent = data.message;
+    }
+    else {
+        console.log(response);
+    }
+</script>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <p class="start">Add new hardware</p>
+        <div class="action">
+        <p class="text">
+            ID
+        </p>
+        <input type="text" id="id" name="cpu" required>
+    </div>
+    <div class="action">
+        <p class="text">
+            CPU
+        </p>
+        <input type="text" id="cpu" name="cpu" required>
+    </div>
+    <div class="action">
+        <p class="email">
+            capacity of ram
+        </p>
+        <input type="text" id="capacity_of_ram" name="capacity of ram" required>
+    </div>
+    <div class="action">
+        <p class="text">
+            capacity of disk
+        </p>
+        <input type="text" id="capacity_of_disk" name="capacity of disk" required>
+    </div>
+        <div class="action">
+        <p class="text">
+            status
+        </p>
+        <input type="text" id="status" name="status" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm">Confirm</button>
+    </div>
+    <div class="add_hardware">
+        <a href="/pages/hardware/add_hardware">Add hardware</a>
+    </div>
+    <div class="find_hardware">
+        <a href="/pages/hardware/find_hardware">Find hardware</a>
+    </div>
+    <div class="delete_hardware">
+        <a href="/pages/hardware/delete_hardware">Delete hardware</a>
+    </div>
+</section>
+
+{% endblock %}

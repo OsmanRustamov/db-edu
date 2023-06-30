@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block head %}
+<script>
+    const search_for_hardware = () => {
+        const searchInputValue = document.getElementById("name").value;
+        window.location.href = `/pages/hardware/find_hardware?hardware_id=${searchInputValue}`;
+    }
+</script>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <p class="start">Find hardware</p>
+    <div class="name">
+        <p class="name">
+            Hardware id
+        </p>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm" onclick="search_for_hardware()">Confirm</button>
+    </div>
+    <table>
+        <thead>
+          <tr>
+              <th>id</th>
+              <th>cpu</th>
+              <th>capacity_of_ram</th>
+              <th>capacity_of_disk</th>
+              <th>status</th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for hard in hardware %}
+                <tr>
+                    <th>{{ hard.id }}</th>
+                    <td>{{ hard.cpu }}</td>
+                    <td>{{ hard.capacity_of_ram }}</td>
+                    <td>{{ hard.capacity_of_disk }}</td>
+                    <td>{{ hard.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}

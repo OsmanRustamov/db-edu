@@ -46,7 +46,9 @@ current_user = fastapi_users.current_user()
 
 @app.get("/protected-route")
 def protected_route(user: User = Depends(current_user)):
-    return f"Hello, {user.name}"
+    if current_user.dict().get("id") == 1:
+        return f"Hello, {user.name}"
+    return f"You're not auth"
 
 
 @app.get("/unprotected-route")

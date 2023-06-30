@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-            {% for us in user %}
+            {% for us in tariff %}
                 <tr>
                     <th>{{ us.id }}</th>
                     <td>{{ us.name }}</td>
@@ -26,7 +26,13 @@
             </tbody>
         </table>
         <div class="aciton">
-        <a href="/pages/user/find_user?user_id=1">Find user</a>
+        <a href="/tariff/add_tariff">Add tariff</a>
+        </div>
+        <div class="aciton">
+        <a href="/tariff/find_tariff">Find tariff</a>
+        </div>
+        <div class="aciton">
+        <a href="/tariff/delete_tariff">Delete tariff</a>
         </div>
     </section>
 {% endblock %}

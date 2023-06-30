@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+<body>
+{% block content %}
+    <section class="section">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>cpu</th>
+                    <th>capacity_of_ram</th>
+                    <th>capacity_of_disk</th>
+                    <th>status</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for hard in hardware %}
+                <tr>
+                    <th>{{ hard.id }}</th>
+                    <td>{{ hard.cpu }}</td>
+                    <td>{{ hard.capacity_of_ram }}</td>
+                    <td>{{ hard.capacity_of_disk }}</td>
+                    <td>{{ hard.status }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="add_hardware">
+        <a href="/pages/hardware/add_hardware">Add hardware</a>
+        </div>
+        <div class="find_hardware">
+        <a href="/pages/hardware/find_hardware">Find hardware</a>
+        </div>
+        <div class="delete_hardware">
+        <a href="/pages/hardware/delete_hardware">Delete hardware</a>
+        </div>
+    </section>
+{% endblock %}

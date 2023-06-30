@@ -9,24 +9,30 @@
                     <th>id</th>
                     <th>name</th>
                     <th>email</th>
-                    <th>tariff</th>
+                    <th>server</th>
                     <th>created_at</th>
                 </tr>
             </thead>
             <tbody>
-            {% for us in user %}
+            {% for us in server %}
                 <tr>
                     <th>{{ us.id }}</th>
                     <td>{{ us.name }}</td>
                     <td>{{ us.email }}</td>
-                    <td>{{ us.tariff_id }}</td>
+                    <td>{{ us.server_id }}</td>
                     <td>{{ us.created_at }}</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
         <div class="aciton">
-        <a href="/pages/user/find_user?user_id=1">Find user</a>
+        <a href="/server/add_server">Add server</a>
+        </div>
+        <div class="aciton">
+        <a href="/server/find_server">Find server</a>
+        </div>
+        <div class="aciton">
+        <a href="/server/delete_server">Delete server</a>
         </div>
     </section>
 {% endblock %}

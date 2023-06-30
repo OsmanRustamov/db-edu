@@ -5,7 +5,7 @@
     <title>Main</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body, html {
+    body, html {
         background-image: url("{{ url_for('static', path='background.png') }}");
         background-size: 100%;
         width: 100%;
@@ -23,6 +23,7 @@
         margin: 0 auto;
         flex-direction: column;
         background-color: #7b7b7b;
+        margin-top: 150px;
     }
     .input {
         margin: 10px;
@@ -71,7 +72,7 @@
       text-decoration: none;
       color: #000;
       margin: 0 auto;
-      font-size: 12px;
+      font-size: 20px;
     }
     .nav {
         display: flex;
@@ -92,6 +93,9 @@
     .logo_text{
         margin: 5px;
         font-size: 30px;
+    }
+    .action{
+        margin: 1em;
     }
     </style>
 </head>

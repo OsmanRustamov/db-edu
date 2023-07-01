@@ -1,10 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends "base.html" %}
+{% block head %}
+<script>
+    const search_for_server = () => {
+        const searchInputValue = document.getElementById("name").value;
+        window.location.href = `/pages/server/delete_server?server_id=${searchInputValue}`;
+    }
+</script>
+{% endblock %}
 <body>
+{% block content %}
 
-</body>
-</html>
+<section class="section">
+    <p class="start">Delete server</p>
+    <div class="name">
+        <p class="name">
+            Hardware ID
+        </p>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm" onclick="search_for_server()">Confirm</button>
+    </div>
+    <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>server</th>
+            <th>ip address</th>
+            <th>OS</th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for hard in server %}
+                <tr>
+                    <th>{{ hard.id }}</th>
+                    <td>{{ hard.hardware_id }}</td>
+                    <td>{{ hard.ip_address }}</td>
+                    <td>{{ hard.operating_system }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="action">
+        <a href="/pages/server/get_servers" class="btn_submit">Servers</a>
+    </div>
+    <div class="action">
+        <a href="/pages/server/find_server?server_id=1111111" class="btn_submit">Find servers</a>
+    </div>
+    <div class="action">
+        <a href="/pages/server/add_server" class="btn_submit">Add server</a>
+    </div>
+    <div class="action">
+        <a href="/pages/server/delete_server?server_id=1111111" class="btn_submit">Delete server</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,30 +1,39 @@
 {% extends "base.html" %}
 {% block head %}
 <script>
-    const hardware_id = document.getElementById("id").value()
-    const hardware_cpu = document.getElementById("cpu").value()
-    const hardware_capacity_of_ram = document.getElementById("capacity_of_ram").value()
-    const hardware_capacity_of_disk = document.getElementById("capacity_of_disk").value()
-    const hardware_status = document.getElementById("status").value()
+  const send_value = () => {
+      try {
+          id = document.getElementById("id")
+          cpu = document.getElementById("cpu")
+          capacity_of_ram = document.getElementById("capacity_of_ram")
+          capacity_of_disk = document.getElementById("capacity_of_disk")
+          status = document.getElementById("status")
+          data = {
+              "id": id,
+              "cpu": cpu,
+              "capacity_of_ram": capacity_of_ram,
+              "capacity_of_disk": capacity_of_disk,
+              "status": status
+          }
+        const response = async () => await fetch('/hardware', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
 
-    const response = await fetch("/hardware/add_hardware", {
-        method: "POST",
-        headers: {"Accept": "application/json", "Content-Type": "application/json"},
-        body: JSON.stringify({
-            id: hardware_id,
-            cpu: hardware_cpu,
-            capacity_of_ram: hardware_capacity_of_ram,
-            capacity_of_disk: hardware_capacity_of_disk,
-            status: hardware_status
-        })
-    });
-    if (response.ok) {
-        const data = await response.json();
-        document.getElementById("message").textContent = data.message;
-    }
-    else {
-        console.log(response);
-    }
+        // Проверяем статус ответа
+        if (response.ok) {
+          const result = async () => await response.json();
+          console.log(result); // Обрабатываем ответ от сервера
+        } else {
+          console.error('Ошибка при отправке данных');
+        }
+      } catch (error) {
+        console.error('Ошибка:', error);
+      }
+  }
 </script>
 {% endblock %}
 {% block content %}
@@ -61,16 +70,19 @@
         <input type="text" id="status" name="status" required>
     </div>
     <div class="btn_confirm">
-        <button class="confirm">Confirm</button>
+        <button class="confirm" onclick="send_value()">Confirm</button>
     </div>
-    <div class="add_hardware">
-        <a href="/pages/hardware/add_hardware">Add hardware</a>
+    <div class="action">
+        <a href="/pages/hardware/get_hardwares" class="btn_submit">Hardwares</a>
     </div>
-    <div class="find_hardware">
-        <a href="/pages/hardware/find_hardware">Find hardware</a>
+    <div class="action">
+        <a href="/pages/hardware/find_hardware?hardware_id=1111111" class="btn_submit">Find hardwares</a>
     </div>
-    <div class="delete_hardware">
-        <a href="/pages/hardware/delete_hardware">Delete hardware</a>
+    <div class="action">
+        <a href="/pages/hardware/add_hardware" class="btn_submit">Add hardware</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/delete_hardware?hardware_id=1111111" class="btn_submit">Delete hardware</a>
     </div>
 </section>
 

@@ -1,5 +1,5 @@
 from app.models.models import hardware
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Body
 from sqlalchemy import select, insert, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -18,11 +18,16 @@ async def get_specific_hardwares(hardware_id: int, session: AsyncSession = Depen
     return result.all()
 
 @router.post("/hardware")
-async def add_specific_hardwares(new_hardware: Hardware_create, session: AsyncSession = Depends(get_async_session)):
+async def add_specific_hardwares(new_hardware=Body(), session: AsyncSession = Depends(get_async_session)):
     stmt = insert(hardware).values(**new_hardware.dict())
     await session.execute(stmt)
     await session.commit()
-    return {"status": "hardware added"}
+    query = select(hardware).where(hardware.c.id == new_hardware.dict().get("id"))
+    result = await session.execute(query)
+    res = []
+    for el in result.all():
+        res.append(el)
+    return {"res": res}
 
 
 @router.get("/hardware")
@@ -32,6 +37,7 @@ async def get_all_hardwares(session: AsyncSession = Depends(get_async_session)):
     res = []
     for el in result.all():
         res.append(el)
+    print(res)
     return {"res": res}
 
 

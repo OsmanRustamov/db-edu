@@ -25,14 +25,17 @@
             {% endfor %}
             </tbody>
         </table>
-        <div class="add_hardware">
-        <a href="/pages/hardware/add_hardware">Add hardware</a>
-        </div>
-        <div class="find_hardware">
-        <a href="/pages/hardware/find_hardware">Find hardware</a>
-        </div>
-        <div class="delete_hardware">
-        <a href="/pages/hardware/delete_hardware">Delete hardware</a>
-        </div>
+    <div class="action">
+        <a href="/pages/hardware/get_hardwares" class="btn_submit">Hardwares</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/find_hardware?hardware_id=1111111" class="btn_submit">Find hardwares</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/add_hardware" class="btn_submit">Add hardware</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/delete_hardware?hardware_id=1111111" class="btn_submit">Delete hardware</a>
+    </div>
     </section>
 {% endblock %}

@@ -7,32 +7,33 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>name</th>
-                    <th>email</th>
-                    <th>tariff</th>
-                    <th>created_at</th>
+                    <th>price</th>
+                    <th>description</th>
+                    <th>server_id</th>
                 </tr>
             </thead>
             <tbody>
-            {% for us in tariff %}
+            {% for tar in tariff %}
                 <tr>
-                    <th>{{ us.id }}</th>
-                    <td>{{ us.name }}</td>
-                    <td>{{ us.email }}</td>
-                    <td>{{ us.tariff_id }}</td>
-                    <td>{{ us.created_at }}</td>
+                    <th>{{ tar.id }}</th>
+                    <td>{{ tar.price }}</td>
+                    <td>{{ tar.description }}</td>
+                    <td>{{ tar.server_id }}</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-        <div class="aciton">
-        <a href="/tariff/add_tariff">Add tariff</a>
-        </div>
-        <div class="aciton">
-        <a href="/tariff/find_tariff">Find tariff</a>
-        </div>
-        <div class="aciton">
-        <a href="/tariff/delete_tariff">Delete tariff</a>
-        </div>
+    <div class="action">
+        <a href="/pages/tariff/get_tariffs" class="btn_submit">Tariffs</a>
+    </div>
+    <div class="action">
+        <a href="/pages/tariff/find_tariff?tariff_id=1111111" class="btn_submit">Find tariffs</a>
+    </div>
+    <div class="action">
+        <a href="/pages/tariff/add_tariff" class="btn_submit">Add tariff</a>
+    </div>
+    <div class="action">
+        <a href="/pages/tariff/delete_tariff?tariff_id=1111111" class="btn_submit">Delete tariff</a>
+    </div>
     </section>
 {% endblock %}

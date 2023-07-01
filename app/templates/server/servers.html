@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
+<body>
+{% block content %}
+  <section class="section">
+    <div class="action">
+        <a href="/pages/server/get_servers" class="btn_submit">Servers</a>
+    </div>
+    <div class="action">
+        <a href="/pages/server/find_server?server_id=1111111" class="btn_submit">Find servers</a>
+    </div>
+    <div class="action">
+        <a href="/pages/server/add_server" class="btn_submit">Add server</a>
+    </div>
+    <div class="action">
+        <a href="/pages/server/delete_server?server_id=1111111" class="btn_submit">Delete server</a>
+    </div>
+  </section>
+    {% endblock %}
 </body>
 </html>

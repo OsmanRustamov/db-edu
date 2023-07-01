@@ -8,13 +8,12 @@ from app.auth.database import User
 from app.auth.manager import get_user_manager
 from app.auth.schemas import UserRead, UserCreate
 from app.routes import routes
-from pages.router import router as router_pages
+from pages import routes as router_pages
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
 
 fastapi_users = FastAPIUsers[User, int](
     get_user_manager,
@@ -55,10 +54,11 @@ def protected_route(user: User = Depends(current_user)):
 def unprotected_route():
     return f"Hello, anonym"
 
-app.include_router(router_pages)
 for route in routes:
     app.include_router(route)
 
+for route in router_pages:
+    app.include_router(route)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=5433, reload=True, workers=3)

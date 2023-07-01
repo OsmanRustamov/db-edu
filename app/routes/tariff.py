@@ -11,17 +11,11 @@ router = APIRouter(
     tags=['tariff'],
 )
 
-@router.get("/tariff/{tariff_id}")
-async def get_specific_tariffs(tariff_id: int, session: AsyncSession = Depends(get_async_session)):
-    query = select(tariff).where(tariff.c.id == tariff_id)
-    result = await session.execute(query)
-    return result.all()
-
 @router.post("/tariff")
-async def add_specific_tariffs(new_tariff: Tariff_create, session: AsyncSession = Depends(get_async_session)):
+async def add_specific_tariff(new_tariff: Tariff_create, session: AsyncSession = Depends(get_async_session)):
     stmt = insert(tariff).values(**new_tariff.dict())
     await session.execute(stmt)
-    await  session.commit()
+    await session.commit()
     return {"status": "tariff added"}
 
 
@@ -29,14 +23,8 @@ async def add_specific_tariffs(new_tariff: Tariff_create, session: AsyncSession 
 async def get_all_tariffs(session: AsyncSession = Depends(get_async_session)):
     query = select(tariff)
     result = await session.execute(query)
-    dict_tariff = dict()
     res = []
     for el in result.all():
-        dict_tariff.update({"id": el[0]})
-        dict_tariff.update({"cpu": el[1]})
-        dict_tariff.update({"capacity_of_ram": el[2]})
-        dict_tariff.update({"capacity_of_disk": el[3]})
-        dict_tariff.update({"status": el[4]})
         res.append(el)
     return {"res": res}
 
@@ -46,23 +34,19 @@ async def get_all_tariffs(session: AsyncSession = Depends(get_async_session)):
 async def find_tariff(tariff_id: int, session: AsyncSession = Depends(get_async_session)):
     query = select(tariff).where(tariff.c.id == tariff_id)
     result = await session.execute(query)
-    dict_tariff = dict()
     res = []
     for el in result.all():
-        dict_tariff.update({"id": el[0]})
-        dict_tariff.update({"cpu": el[1]})
-        dict_tariff.update({"capacity_of_ram": el[2]})
-        dict_tariff.update({"capacity_of_disk": el[3]})
-        dict_tariff.update({"status": el[4]})
         res.append(el)
     return {"finded_tariff": res}
 
 @router.post("/tariff/tariff_id")
 async def delete_tariff(tariff_id: int, session: AsyncSession = Depends(get_async_session)):
+    query = select(tariff).where(tariff.c.id == tariff_id)
+    result = await session.execute(query)
     stmt = delete(tariff).where(tariff.c.id == tariff_id)
     await session.execute(stmt)
     await  session.commit()
     res = []
-    for el in stmt.all():
+    for el in result.all():
         res.append(el)
     return {"res": res}

@@ -19,3 +19,12 @@ services:
       interval: 10s
       timeout: 3s
       retries: 3
+  pg_admin:
+    container_name: db_pgadmin_container
+    image: dpage/pgadmin4
+    env_file:
+      - app/config.env
+    ports:
+      - "8090:80"
+    networks:
+      - db_app

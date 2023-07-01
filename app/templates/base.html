@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
-    <link rel="stylesheet" href="style.css">
     <style>
     body, html {
         background-image: url("{{ url_for('static', path='background.png') }}");
@@ -103,7 +102,7 @@
 <body>
     <nav class="nav">
         <div class="logo">
-            <p class="logo_text">MineHost</p>
+            <p class="logo_text"><a href="/pages/main">MineHost</a></p>
         </div>
         <div class="btn">
             <button class="confirm">Auth</button>

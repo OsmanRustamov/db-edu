@@ -22,11 +22,11 @@
     <table>
         <thead>
           <tr>
-              <th>id</th>
-              <th>cpu</th>
-              <th>capacity_of_ram</th>
-              <th>capacity_of_disk</th>
-              <th>status</th>
+            <th>id</th>
+            <th>cpu</th>
+            <th>capacity_of_ram</th>
+            <th>capacity_of_disk</th>
+            <th>status</th>
           </tr>
         </thead>
         <tbody>
@@ -41,6 +41,18 @@
             {% endfor %}
         </tbody>
     </table>
+    <div class="action">
+        <a href="/pages/hardware/get_hardwares" class="btn_submit">Hardwares</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/find_hardware?hardware_id=1111111" class="btn_submit">Find hardwares</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/add_hardware" class="btn_submit">Add hardware</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/delete_hardware?hardware_id=1111111" class="btn_submit">Delete hardware</a>
+    </div>
 </section>
 
 {% endblock %}

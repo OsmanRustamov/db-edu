@@ -21,7 +21,7 @@ def get_all_hardwares(request: Request, hardware=Depends(get_all_hardwares)):
 
 @router.post("/hardware/add_hardware")
 async def add_hardware(request: Request, hardware=Depends(add_specific_hardwares)):
-    return templates.TemplateResponse("hardware/add_hardware.html", {"request": request, "hardware": hardware["status"]})
+    return templates.TemplateResponse("hardware/add_hardware.html", {"request": request, "hardware": hardware["res"]})
 
 @router.get("/hardware/find_hardware")
 def find_hardwares(request: Request, hardware=Depends(find_hardware)):

@@ -11,18 +11,18 @@ router = APIRouter(
     tags=['hardware'],
 )
 
-@router.get("/hardware/{hardware_id}")
-async def get_specific_hardwares(hardware_id: int, session: AsyncSession = Depends(get_async_session)):
-    query = select(hardware).where(hardware.c.id == hardware_id)
-    result = await session.execute(query)
-    return result.all()
+# @router.get("/hardware/{hardware_id}")
+# async def get_specific_hardwares(hardware_id: int, session: AsyncSession = Depends(get_async_session)):
+#     query = select(hardware).where(hardware.c.id == hardware_id)
+#     result = await session.execute(query)
+#     return result.all()
 
-@router.post("/hardware")
-async def add_specific_hardwares(new_hardware=Body(), session: AsyncSession = Depends(get_async_session)):
-    stmt = insert(hardware).values(**new_hardware.dict())
+@router.post("/hardware/{hardware_id}_{hardware_cpu}_{hardware_capacity_of_ram}_{hardware_capacity_of_disk}_{status}")
+async def add_specific_hardwares(hardware_id: int, hardware_cpu: str, hardware_capacity_of_ram: str, hardware_capacity_of_disk: str, status: str, session: AsyncSession = Depends(get_async_session)):
+    stmt = insert(hardware).values(hardware.c.id == hardware_id, hardware.c.cpu == hardware_cpu, hardware.c.capacity_of_ram == hardware_capacity_of_ram, hardware.c.capacity_of_disk == hardware_capacity_of_disk, hardware.c.status == status)
     await session.execute(stmt)
     await session.commit()
-    query = select(hardware).where(hardware.c.id == new_hardware.dict().get("id"))
+    query = select(hardware).where(hardware.c.id == hardware_cpu)
     result = await session.execute(query)
     res = []
     for el in result.all():

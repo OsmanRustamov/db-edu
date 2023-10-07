@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Depends
 from fastapi.templating import Jinja2Templates
 
-from app.routes.user import get_all_users, find_user
+from app.routes.user import get_all_users, find_user, delete_user
 
 
 router = APIRouter(
@@ -22,3 +22,7 @@ def get_all_users(request: Request, user=Depends(get_all_users)):
 @router.get("/user/find_user")
 def find_user(request: Request, user=Depends(find_user)):
     return templates.TemplateResponse("user/find_user.html", {"request": request, "user": user["finded_user"]})
+
+@router.get("/user/delete_user")
+def delete_user(request: Request, user=Depends(delete_user)):
+    return templates.TemplateResponse("user/delete_user.html", {"request": request, "user": user["res"]})

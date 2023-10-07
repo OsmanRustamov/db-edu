@@ -22,7 +22,7 @@ async def get_all_users(session: AsyncSession = Depends(get_async_session)):
         dict_user.update({"id": el[0]})
         dict_user.update({"name": el[1]})
         dict_user.update({"email": el[2]})
-        dict_user.update({"tariff_id": el[3]})
+        dict_user.update({"user_id": el[3]})
         dict_user.update({"created_at": el[4]})
         res.append(el)
     return {"res": res}
@@ -52,7 +52,7 @@ async def find_user(user_id: int, session: AsyncSession = Depends(get_async_sess
         dict_user.update({"id": el[0]})
         dict_user.update({"name": el[1]})
         dict_user.update({"email": el[2]})
-        dict_user.update({"tariff_id": el[3]})
+        dict_user.update({"user_id": el[3]})
         dict_user.update({"created_at": el[4]})
         res.append(el)
     return {
@@ -62,12 +62,12 @@ async def find_user(user_id: int, session: AsyncSession = Depends(get_async_sess
 
 @router.post("/user/user_id")
 async def delete_user(user_id: int, session: AsyncSession = Depends(get_async_session)):
+    query = select(user).where(user.c.id == user_id)
+    result = await session.execute(query)
     stmt = delete(user).where(user.c.id == user_id)
     await session.execute(stmt)
     await session.commit()
     res = []
-    for el in stmt.all():
+    for el in result.all():
         res.append(el)
-    return {"status": "user",
-            "res": res
-            }
+    return {"res": res}

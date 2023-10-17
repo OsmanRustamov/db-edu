@@ -4,10 +4,16 @@
 {% block content %}
   <section class="section">
     <div class="action">
-        <a href="/pages/user/get_users" class="btn_submit">Users</a>
+        <a href="/pages/user/get_users" class="btn_submit">Get all Users</a>
     </div>
     <div class="action">
-        <a href="/pages/user/find_user?user_id=1111111" class="btn_submit">Find users</a>
+        <a href="/pages/user/find_user?id=1111111" class="btn_submit">Find users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/add_user?id=0_name=root_email=example_tariff_id=0" class="btn_submit">Add users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/delete_user?id=1111111" class="btn_submit">Delete users</a>
     </div>
   </section>
     {% endblock %}

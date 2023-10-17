@@ -2,8 +2,8 @@ from app.models.models import payment
 from fastapi import APIRouter, Depends
 from sqlalchemy import select, insert, delete
 from sqlalchemy.ext.asyncio import AsyncSession
-
-from app.auth.database import get_async_session
+from app.database import get_async_session
+# from app.auth.database import get_async_session
 from app.schemas.payment import Payment_create
 
 router = APIRouter(

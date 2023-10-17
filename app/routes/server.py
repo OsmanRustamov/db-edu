@@ -2,8 +2,8 @@ from app.models.models import server
 from fastapi import APIRouter, Depends
 from sqlalchemy import select, insert, delete
 from sqlalchemy.ext.asyncio import AsyncSession
-
-from app.auth.database import get_async_session
+from app.database import get_async_session
+# from app.auth.database import get_async_session
 from app.schemas.server import Server_create
 
 router = APIRouter(
@@ -17,12 +17,20 @@ async def get_specific_servers(server_id: int, session: AsyncSession = Depends(g
     result = await session.execute(query)
     return result.all()
 
-@router.post("/server")
-async def add_specific_servers(new_server: Server_create, session: AsyncSession = Depends(get_async_session)):
-    stmt = insert(server).values(**new_server.dict())
+@router.post("/server/server_id_hardware_id_ip_address_operating_system")
+async def add_specific_servers(server_id: int, hardware_id: int, ip_address: str, operating_system: int, session: AsyncSession = Depends(get_async_session)):
+    vals = [server_id, hardware_id, ip_address, operating_system]
+    stmt = insert(server).values(vals)
     await session.execute(stmt)
-    await  session.commit()
-    return {"status": "server added"}
+    await session.commit()
+    query = select(server).where(server.c.id == server_id)
+    result = await session.execute(query)
+    res = []
+    for el in result.all():
+        res.append(el)
+    return {
+            "added_server": res
+            }
 
 @router.get("/server")
 async def get_all_servers(session: AsyncSession = Depends(get_async_session)):

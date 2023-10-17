@@ -3,7 +3,7 @@ from fastapi.templating import Jinja2Templates
 
 from app.routes.tariff import get_all_tariffs
 from app.routes.user import get_all_users, find_user
-from app.routes.hardware import get_all_hardwares, find_hardware, add_specific_hardwares, delete_hardware
+from app.routes.hardware import get_all_hardwares, find_hardware, add_hardware, delete_hardware
 
 
 router = APIRouter(

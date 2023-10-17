@@ -10,7 +10,6 @@
                     <th>name</th>
                     <th>email</th>
                     <th>tariff</th>
-                    <th>created_at</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +19,6 @@
                     <td>{{ us.name }}</td>
                     <td>{{ us.email }}</td>
                     <td>{{ us.tariff_id }}</td>
-                    <td>{{ us.created_at }}</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -30,6 +28,9 @@
     </div>
     <div class="action">
         <a href="/pages/user/find_user?user_id=1111111" class="btn_submit">Find users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/add_user?user_id=1111111_user_name=root_user_email=example.com_tariff_id=0" class="btn_submit">Add users</a>
     </div>
     <div class="action">
         <a href="/pages/user/delete_user?user_id=1111111" class="btn_submit">Delete users</a>

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Depends
 from fastapi.templating import Jinja2Templates
 
-from app.routes.hardware import get_all_hardwares, find_hardware, add_specific_hardwares, delete_hardware
+from app.routes.hardware import get_all_hardwares, find_hardware, add_hardware, delete_hardware
 
 
 router = APIRouter(
@@ -20,8 +20,8 @@ def get_all_hardwares(request: Request, hardware=Depends(get_all_hardwares)):
     return templates.TemplateResponse("hardware/get_hardwares.html", {"request": request, "hardware": hardware["res"]})
 
 @router.post("/hardware/add_hardware")
-async def add_hardware(request: Request, hardware=Depends(add_specific_hardwares)):
-    return templates.TemplateResponse("hardware/add_hardware.html", {"request": request, "hardware": hardware["res"]})
+async def add_hardware(request: Request, hardware=Depends(add_hardware)):
+    return templates.TemplateResponse("hardware/add_hardware.html", {"request": request, "hardware": hardware["message"]})
 
 @router.get("/hardware/find_hardware")
 def find_hardwares(request: Request, hardware=Depends(find_hardware)):

@@ -10,11 +10,8 @@ user = Table(
     Column("name", String, nullable=False, unique=True),
     Column("email", String, nullable=False, unique=True),
     Column("tariff_id", Integer, ForeignKey("tariff.id"), nullable=True),
-    Column("created_at", TIMESTAMP, default=datetime.utcnow),
     Column("hashed_password", String(length=1024), nullable=False),
-    Column("is_active", Boolean, default=True, nullable=False),
-    Column("is_superuser", Boolean, default=False, nullable=False),
-    Column("is_verified", Boolean, default=False, nullable=False)
+    Column("is_superuser", Boolean, default=False, nullable=False)
 )
 
 tariff = Table(

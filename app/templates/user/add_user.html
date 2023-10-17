@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block head %}
+<script>
+    const search_for_user = () => {
+        const id = document.getElementById("user_id").value;
+        const name = document.getElementById("user_name").value;
+        const email = document.getElementById("user_email").value;
+        const tariff_id = document.getElementById("tariff_id").value;
+        window.location.href = `/pages/user/add_user?id=${id}_
+                                name=${name}_
+                                email=${email}_
+                                id=${tariff_id}`;
+    }
+</script>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <p class="start">Add new user</p>
+        <div class="action">
+        <p class="text">
+            ID
+        </p>
+        <input type="text" id="user_id" name="id" required>
+    </div>
+    <div class="action">
+        <p class="text">
+            name
+        </p>
+        <input type="text" id="user_name" name="name" required>
+    </div>
+    <div class="action">
+        <p class="email">
+            email
+        </p>
+        <input type="text" id="user_email" name="email" required>
+    </div>
+    <div class="action">
+        <p class="text">
+            tariff_id
+        </p>
+        <input type="text" id="tariff_id" name="tariff" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm" onclick="search_for_user()">Confirm</button>
+    </div>
+    <table>
+        <thead>
+          <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>email</th>
+              <th>tariff</th>
+              <th>created_at</th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for us in user %}
+                <tr>
+                    <th>{{ us.id }}</th>
+                    <td>{{ us.name }}</td>
+                    <td>{{ us.email }}</td>
+                    <td>{{ us.tariff_id }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="action">
+        <a href="/pages/user/users" class="btn_submit">Users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/get_users" class="btn_submit">Get all Users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/find_user?user_id=1111111" class="btn_submit">Find users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/delete_user?user_id=1111111" class="btn_submit">Delete users</a>
+    </div>
+</section>
+
+{% endblock %}

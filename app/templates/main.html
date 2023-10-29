@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+<body>
+    <nav class="nav">
+        <div class="btn">
+            <button class="btn_submit">Auth</button>
+            <button class="btn_submit">Regis</button>
+        </div>
+    </nav>
+    {% block content %}
+    <section class="section">
+        <div class="menu">
+            <a href="user/users" class="btn_submit">Users</a>
+            <a href="tariff/tariffs" class="btn_submit">Tariffs</a>
+            <a href="hardware/hardwares" class="btn_submit">Hardwares</a>
+            <a href="server/servers" class="btn_submit">Servers</a>
+            <a href="payment/payments" class="btn_submit">Payments</a>
+        </div>
+    </section>
+    {% endblock %}

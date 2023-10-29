@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block head %}
+<script>
+    const search_for_user = () => {
+        const searchInputValue = document.getElementById("name").value;
+        window.location.href = `/pages/user/find_user?user_id=${searchInputValue}`;
+    }
+</script>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <p class="start">Find user</p>
+    <div class="name">
+        <p class="name">
+            User id
+        </p>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm" onclick="search_for_user()">Confirm</button>
+    </div>
+    <table>
+        <thead>
+          <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>email</th>
+              <th>tariff</th>
+              <th>created_at</th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for us in user %}
+                <tr>
+                    <th>{{ us.id }}</th>
+                    <td>{{ us.name }}</td>
+                    <td>{{ us.email }}</td>
+                    <td>{{ us.tariff_id }}</td>
+                    <td>{{ us.created_at }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="action">
+        <a href="/pages/user/get_users" class="btn_submit">Users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/find_user?user_id=1111111" class="btn_submit">Find users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/delete_user?user_id=1111111" class="btn_submit">Delete users</a>
+    </div>
+</section>
+
+{% endblock %}

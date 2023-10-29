@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+<body>
+{% block content %}
+    <section class="section">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>user_id</th>
+                    <th>tariff_id</th>
+                    <th>price</th>
+                    <th>created_at</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for pay in payment %}
+                <tr>
+                    <th>{{ pay.id }}</th>
+                    <td>{{ pay.user_id }}</td>
+                    <td>{{ pay.tariff_id }}</td>
+                    <td>{{ pay.price }}</td>
+                    <td>{{ pay.created_at }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <div class="action">
+        <a href="/pages/payment/payments" class="btn_submit">Get all payments</a>
+    </div>
+    <div class="action">
+        <a href="/pages/payment/find_payment?payment_id=1111111" class="btn_submit">Find payment</a>
+    </div>
+    <div class="action">
+        <a href="/pages/payment/add_payment" class="btn_submit">Add payment</a>
+    </div>
+    <div class="action">
+        <a href="/pages/payment/delete_payment?payment_id=1111111" class="btn_submit">Delete payment</a>
+    </div>
+    </section>
+{% endblock %}

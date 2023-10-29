@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block head %}
+<script>
+  const send_value = () => {
+      try {
+          id = document.getElementById("id")
+          cpu = document.getElementById("cpu")
+          capacity_of_ram = document.getElementById("capacity_of_ram")
+          capacity_of_disk = document.getElementById("capacity_of_disk")
+          status = document.getElementById("status")
+          data = {
+              "id": id,
+              "cpu": cpu,
+              "capacity_of_ram": capacity_of_ram,
+              "capacity_of_disk": capacity_of_disk,
+              "status": status
+          }
+        const response = async () => await fetch('/tariff', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        // Проверяем статус ответа
+        if (response.ok) {
+          const result = async () => await response.json();
+          console.log(result); // Обрабатываем ответ от сервера
+        } else {
+          console.error('Ошибка при отправке данных');
+        }
+      } catch (error) {
+        console.error('Ошибка:', error);
+      }
+  }
+</script>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <p class="start">Add new tariff</p>
+        <div class="action">
+        <p class="text">
+            ID
+        </p>
+        <input type="text" id="id" name="cpu" required>
+    </div>
+    <div class="action">
+        <p class="text">
+            CPU
+        </p>
+        <input type="text" id="cpu" name="cpu" required>
+    </div>
+    <div class="action">
+        <p class="email">
+            capacity of ram
+        </p>
+        <input type="text" id="capacity_of_ram" name="capacity of ram" required>
+    </div>
+    <div class="action">
+        <p class="text">
+            capacity of disk
+        </p>
+        <input type="text" id="capacity_of_disk" name="capacity of disk" required>
+    </div>
+        <div class="action">
+        <p class="text">
+            status
+        </p>
+        <input type="text" id="status" name="status" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm" onclick="send_value()">Confirm</button>
+    </div>
+    <div class="action">
+        <a href="tariff/get_tariffs" class="btn_submit">Tariffs</a>
+    </div>
+    <div class="action">
+        <a href="/pages/tariff/add_tariff">Add tariff</a>
+    </div>
+    <div class="action">
+        <a href="/pages/tariff/find_tariff">Find tariff</a>
+    </div>
+    <div class="action">
+        <a href="/pages/tariff/delete_tariff">Delete tariff</a>
+    </div>
+</section>
+
+{% endblock %}

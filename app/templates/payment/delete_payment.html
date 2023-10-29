@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block head %}
+<script>
+    const search_for_payment = () => {
+        const searchInputValue = document.getElementById("name").value;
+        window.location.href = `/pages/payment/delete_payment?payment_id=${searchInputValue}`;
+    }
+</script>
+{% endblock %}
+<body>
+{% block content %}
+
+<section class="section">
+    <p class="start">Delete payment</p>
+    <div class="name">
+        <p class="name">
+            Payment ID
+        </p>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm" onclick="search_for_payment()">Confirm</button>
+    </div>
+    <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>user_id</th>
+            <th>tariff_id</th>
+            <th>price</th>
+            <th>created_at</th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for pay in payment %}
+                <tr>
+                    <th>{{ pay.id }}</th>
+                    <td>{{ pay.user_id }}</td>
+                    <td>{{ pay.tariff_id }}</td>
+                    <td>{{ pay.price }}</td>
+                    <td>{{ pay.created_at }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="action">
+        <a href="/pages/payment/payments" class="btn_submit">Payments</a>
+    </div>
+    <div class="action">
+        <a href="/pages/payment/get_payments" class="btn_submit">Get all payments</a>
+    </div>
+    <div class="action">
+        <a href="/pages/payment/find_payment?payment_id=1111111" class="btn_submit">Find payment</a>
+    </div>
+    <div class="action">
+        <a href="/pages/payment/add_payment" class="btn_submit">Add payment</a>
+    </div>
+</section>
+{% endblock %}

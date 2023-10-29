@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+<body>
+{% block content %}
+  <section class="section">
+    <div class="action">
+        <a href="/pages/payment/get_payments" class="btn_submit">Get all payments</a>
+    </div>
+    <div class="action">
+        <a href="/pages/payment/find_payment?payment_id=1111111" class="btn_submit">Find payment</a>
+    </div>
+    <div class="action">
+        <a href="/pages/payment/add_payment" class="btn_submit">Add payment</a>
+    </div>
+    <div class="action">
+        <a href="/pages/payment/delete_payment?payment_id=1111111" class="btn_submit">Delete payment</a>
+    </div>
+  </section>
+    {% endblock %}
+</body>
+</html>

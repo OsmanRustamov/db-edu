@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block head %}
+<script>
+    const search_for_server = () => {
+        const searchInputValue = document.getElementById("name").value;
+        window.location.href = `/pages/server/find_server?server_id=${searchInputValue}`;
+    }
+</script>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <p class="start">Find server</p>
+    <div class="name">
+        <p class="name">
+            Hardware id
+        </p>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm" onclick="search_for_server()">Confirm</button>
+    </div>
+    <table>
+        <thead>
+          <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>server</th>
+                    <th>ip address</th>
+                    <th>OS</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for serv in server %}
+                <tr>
+                    <th>{{ serv.id }}</th>
+                    <td>{{ serv.server_id }}</td>
+                    <td>{{ serv.ip_address }}</td>
+                    <td>{{ serv.operating_system }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </tbody>
+    </table>
+    <div class="action">
+        <a href="/pages/server/get_servers" class="btn_submit">Servers</a>
+    </div>
+    <div class="action">
+        <a href="/pages/server/find_server?server_id=1111111" class="btn_submit">Find servers</a>
+    </div>
+    <div class="action">
+        <a href="/pages/server/add_server" class="btn_submit">Add server</a>
+    </div>
+    <div class="action">
+        <a href="/pages/server/delete_server?server_id=1111111" class="btn_submit">Delete server</a>
+    </div>
+</section>
+
+{% endblock %}

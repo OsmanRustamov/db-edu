@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+<body>
+{% block content %}
+    <section class="section">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>tariff</th>
+                    <th>created_at</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for us in user %}
+                <tr>
+                    <th>{{ us.id }}</th>
+                    <td>{{ us.name }}</td>
+                    <td>{{ us.email }}</td>
+                    <td>{{ us.tariff_id }}</td>
+                    <td>{{ us.created_at }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <div class="action">
+        <a href="/pages/user/users" class="btn_submit">Users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/find_user?user_id=1111111" class="btn_submit">Find users</a>
+    </div>
+    <div class="action">
+        <a href="/pages/user/delete_user?user_id=1111111" class="btn_submit">Delete users</a>
+    </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+<body>
+{% block content %}
+  <section class="section">
+    <div class="action">
+        <a href="/pages/hardware/get_hardwares" class="btn_submit">Get all hardwares</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/find_hardware?hardware_id=1111111" class="btn_submit">Find hardware</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/add_hardware?hardware_id=0_hardware_cpu=y_hardware_capacity_of_ram=100_hardware_capacity_of_disk=100_hardware_status=work" class="btn_submit">Add hardware</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/delete_hardware?hardware_id=1111111" class="btn_submit">Delete hardware</a>
+    </div>
+  </section>
+    {% endblock %}
+</body>
+</html>

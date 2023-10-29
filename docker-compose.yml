@@ -1,0 +1,21 @@
+version: '3.9'
+networks:
+  db_app:
+    driver: bridge
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    env_file:
+      - app/config.env
+    networks:
+      - db_app
+    volumes:
+      - ./postgres/migration:/docker-entrypoint-initdb.d
+      - ./postgres/data:/var/lib/postgresql/data:z
+    healthcheck:
+      test: config.env
+      interval: 10s
+      timeout: 3s
+      retries: 3

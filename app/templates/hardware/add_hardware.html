@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block head %}
+<script>
+    const send_value = () => {
+        const hardware_id = document.getElementById("name").value;
+        const hardware_cpu = document.getElementById("cpu").value;
+        const hardware_capacity_of_ram = document.getElementById("capacity_of_ram").value;
+        const hardware_capacity_of_disk = document.getElementById("capacity_of_disk").value;
+        const hardware_status = document.getElementById("status").value;
+        window.location.href = `/pages/hardware/add_hardware?hardware_id=${hardware_id}_
+                                hardware_cpu=${hardware_cpu}_
+                                hardware_capacity_of_ram=${hardware_capacity_of_ram}_
+                                hardware_capacity_of_disk=${hardware_capacity_of_disk}_
+                                hardware_status=${hardware_status}`;
+    }
+</script>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <p class="start">Add new hardware</p>
+        <div class="action">
+        <p class="text">
+            ID
+        </p>
+        <input type="text" id="id" name="cpu" required>
+    </div>
+    <div class="action">
+        <p class="text">
+            CPU
+        </p>
+        <input type="text" id="cpu" name="cpu" required>
+    </div>
+    <div class="action">
+        <p class="email">
+            capacity of ram
+        </p>
+        <input type="text" id="capacity_of_ram" name="capacity of ram" required>
+    </div>
+    <div class="action">
+        <p class="text">
+            capacity of disk
+        </p>
+        <input type="text" id="capacity_of_disk" name="capacity of disk" required>
+    </div>
+        <div class="action">
+        <p class="text">
+            status
+        </p>
+        <input type="text" id="status" name="status" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm" onclick="send_value()">Confirm</button>
+    </div>
+    <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>cpu</th>
+        <th>capacity_of_ram</th>
+        <th>capacity_of_disk</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>
+         {% for hard in hardware %}
+            <tr>
+                <th>{{ hard.id }}</th>
+                <td>{{ hard.cpu }}</td>
+                <td>{{ hard.capacity_of_ram }}</td>
+                <td>{{ hard.capacity_of_disk }}</td>
+                <td>{{ hard.status }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <div class="action">
+        <a href="/pages/hardware/get_hardwares" class="btn_submit">Hardwares</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/find_hardware?hardware_id=1111111" class="btn_submit">Find hardwares</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/add_hardware" class="btn_submit">Add hardware</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/delete_hardware?hardware_id=1111111" class="btn_submit">Delete hardware</a>
+    </div>
+</section>
+
+{% endblock %}

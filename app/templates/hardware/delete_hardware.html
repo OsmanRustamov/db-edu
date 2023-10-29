@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block head %}
+<script>
+    const search_for_hardware = () => {
+        const searchInputValue = document.getElementById("name").value;
+        window.location.href = `/pages/hardware/delete_hardware?hardware_id=${searchInputValue}`;
+    }
+</script>
+{% endblock %}
+<body>
+{% block content %}
+
+<section class="section">
+    <p class="start">Delete hardware</p>
+    <div class="name">
+        <p class="name">
+            Hardware ID
+        </p>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="btn_confirm">
+        <button class="confirm" onclick="search_for_hardware()">Confirm</button>
+    </div>
+    <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>hardware</th>
+            <th>ip address</th>
+            <th>OS</th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for hard in hardware %}
+                <tr>
+                    <th>{{ hard.id }}</th>
+                    <td>{{ hard.cpu }}</td>
+                    <td>{{ hard.capacity_of_ram }}</td>
+                    <td>{{ hard.capacity_of_disk }}</td>
+                    <td>{{ hard.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="action">
+        <a href="/pages/hardware/hardwares" class="btn_submit">Hardwares</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/get_hardware" class="btn_submit">Get all hardwares</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/find_hardware?hardware_id=1111111" class="btn_submit">Find hardware</a>
+    </div>
+    <div class="action">
+        <a href="/pages/hardware/add_hardware" class="btn_submit">Add hardware</a>
+    </div>
+</section>
+{% endblock %}

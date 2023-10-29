@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+<body>
+{% block content %}
+    <section class="section">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>price</th>
+                    <th>description</th>
+                    <th>server_id</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for tar in tariff %}
+                <tr>
+                    <th>{{ tar.id }}</th>
+                    <td>{{ tar.price }}</td>
+                    <td>{{ tar.description }}</td>
+                    <td>{{ tar.server_id }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <div class="action">
+        <a href="/pages/tariff/get_tariffs" class="btn_submit">Tariffs</a>
+    </div>
+    <div class="action">
+        <a href="/pages/tariff/find_tariff?tariff_id=1111111" class="btn_submit">Find tariffs</a>
+    </div>
+    <div class="action">
+        <a href="/pages/tariff/add_tariff" class="btn_submit">Add tariff</a>
+    </div>
+    <div class="action">
+        <a href="/pages/tariff/delete_tariff?tariff_id=1111111" class="btn_submit">Delete tariff</a>
+    </div>
+    </section>
+{% endblock %}
